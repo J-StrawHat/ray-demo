@@ -1,0 +1,51 @@
+cc_binary(
+    name = "server",
+    srcs = glob([
+        "src/server/*.cc",
+        "include/*.h",
+    ]),
+    data = ["server.so"],
+    linkstatic = True,
+    deps = [
+        "@ray_api//:ray_api",
+    ], 
+)
+
+cc_binary(
+    name = "server.so",
+    srcs = glob([
+        "src/server/*.cc",
+        "include/*.h",
+    ]),
+    linkopts = ["-shared"],
+    linkstatic = True,
+    deps = [
+        "@ray_api//:ray_api",
+    ], 
+)
+
+cc_binary(
+    name = "client",
+    srcs = glob([
+        "src/client/*.cc",
+        "include/*.h",
+    ]),
+    data = ["client.so"],
+    linkstatic = True,
+    deps = [
+        "@ray_api//:ray_api",
+    ], 
+)
+
+cc_binary(
+    name = "client.so",
+    srcs = glob([
+        "src/client/*.cc",
+        "include/*.h",
+    ]),
+    linkopts = ["-shared"],
+    linkstatic = True,
+    deps = [
+        "@ray_api//:ray_api",
+    ], 
+)
